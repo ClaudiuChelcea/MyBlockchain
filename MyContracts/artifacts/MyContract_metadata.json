@@ -1,0 +1,200 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					}
+				],
+				"name": "AddBlockToChain",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "arg_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "arg_recipient",
+						"type": "address"
+					}
+				],
+				"name": "f_addBlockToChain",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getChain",
+				"outputs": [
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "index",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "timestamp",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "amount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "address",
+										"name": "sender",
+										"type": "address"
+									},
+									{
+										"internalType": "address",
+										"name": "recipient",
+										"type": "address"
+									}
+								],
+								"internalType": "struct MyContract.MyBlock[]",
+								"name": "chain",
+								"type": "tuple[]"
+							},
+							{
+								"internalType": "uint256",
+								"name": "chainSize",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct MyContract.chainOfBlocks",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getChainBlocks",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "index",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "sender",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "recipient",
+								"type": "address"
+							}
+						],
+						"internalType": "struct MyContract.MyBlock[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getChainSize",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "MyContract",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"MyContract.sol": "MyContract"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"MyContract.sol": {
+			"keccak256": "0x55d64b3c813fa2c0c1d166d54c660f6c9056e34853427c004ee0d9b315100cc4",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://01a7a4273221ba33e6e71037257d4fbf95e8fc74c9864224e034ae1c52c3c4c6",
+				"dweb:/ipfs/QmVTv2KKV2sBjEoc3t7ziRQ5kDiEKte4aVk5jzMQWFo4Fh"
+			]
+		}
+	},
+	"version": 1
+}

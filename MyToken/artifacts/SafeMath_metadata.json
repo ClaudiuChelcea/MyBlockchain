@@ -1,0 +1,36 @@
+{
+	"compiler": {
+		"version": "0.4.24+commit.e67f0147"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"MyToken/LionheadRabbit.sol": "SafeMath"
+		},
+		"evmVersion": "byzantium",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"MyToken/LionheadRabbit.sol": {
+			"keccak256": "0xb14cc2b0f2410c75cf7db5c93bd41635c6fc971be063e79bd0b5422aa8bada6b",
+			"urls": [
+				"bzzr://bcab41d2c097b7a46ebd7f8b93adf9ab7c2fa1da64866684bb3d01b39e8658c6"
+			]
+		}
+	},
+	"version": 1
+}

@@ -41,15 +41,15 @@ Contract: 0xa220aF4153b6a8Ff687607A2d3B226b7bfa0b46F
 Name: LionheadRabbitToken - named after the race of my pet, a lion-head rabbit :)
 Symbol: LRT
 
--------------------------------------------------------------------------
+<hr>
 Updates:
-
-- Blockchain
-* Reward with crypto block miners
-* Allow multiple transactions per block for scalability
-* Implement UI
-* Sign transactions with public and private key to allow people to spend only their money
-
-- Token:
-* Made the contract non-pausable
-* Submitted request to BSCScan to upload a logo to my coin
+<br>
+*-* Blockchain<br>
+* Reward with crypto block miners<br>
+* Allow multiple transactions per block for scalability<br>
+* Implement UI<br>
+* Sign transactions with public and private key to allow people to spend only their money<br>
+<br>
+* Token:<br>
+* Made the contract non-pausable<br>
+* Submitted request to BSCScan to upload a logo to my coin<br>

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ClaudiuChelcea/MyBlockchain#readme",
   "dependencies": {
+    "elliptic": "^6.5.4",
     "prompt-sync": "^4.2.0",
     "sha256": "^0.2.0"
   }

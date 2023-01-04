@@ -28,3 +28,4 @@ THE TRANSACTIONS FROM COMMAND LINE */
 Smart Contract:
 * Language used - Solidity
 * Solidy version required - 0.8.7 or higher
+* Contract tested with Remix Ethereum

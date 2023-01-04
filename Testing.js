@@ -81,20 +81,10 @@
     console.log(MyBlockchainName);
  */
 
-/* SECOND BLOCKCHAIN */
-// Get blockchain
-try{
-    var classes = require("./MyBlockchain");
-} catch(exception)
-{
-    console.log("An exception occured when getting my blockchain class:\n" + exception);
-}
 
-// Create blockchain (and genesis block)
-let MyBlockchainName = new classes.MyBlockchain(3); // 5 is the number of '0' needed to be found by the hash
-// to mine the block, it's a difficulty tier
+/* SECOND BLOCKCHAIN, IMPROVED */
 
-/* TEST one single transaction per block
+/* TEST one single transaction per block - outdated
     console.log("Mining first block...");
     MyBlockchainName.addBlockToBlockchain(new classes.Block(1, Date.now(), {amount : 5}));
     console.log("Mining second block...");
@@ -113,6 +103,9 @@ let MyBlockchainName = new classes.MyBlockchain(3); // 5 is the number of '0' ne
     console.log("Blockchain validity: " + MyBlockchainName.isChainValid());
 */
 
+
+
+/* Test multiple transactions per block - outdated, since we now use public keys
 // Test multiple transactions per block and getting miner rewards
 let i = 0;
 let sum1 = 0;
@@ -132,7 +125,7 @@ while (i > 0)
     i--;
 }
 
-/* TEST blockchain */
+// TEST blockchain
 console.log("Initial blockchain:")
 console.log(MyBlockchainName);
 
@@ -149,5 +142,57 @@ console.log("Amount of currecy received by miner:" + MyBlockchainName.getBalance
 // Check the balance of the two senders
 console.log("\n\nSender 1 sent " + sum1 + " and received " + sum2 + " so he has: " + MyBlockchainName.getBalanceOfAddress("fromAddress1"));
 console.log("Receiver 1 sent " + sum2 + " and received " + sum1 + " so he has: " + MyBlockchainName.getBalanceOfAddress("toAddress1"));
+*/
 
+const EC = require('elliptic').ec;
+const ec = new EC('secp256k1'); // the basic bitcoin wallet
+
+// Get blockchain
+try{
+    var classes = require("./MyBlockchain");
+} catch(exception)
+{
+    console.log("An exception occured when getting my blockchain class:\n" + exception);
+}
+
+// Create blockchain (and genesis block)
+// 3 is the number of '0' needed to be found by the hash
+// to mine the block, it's a difficulty tier
+let MyBlockchainName = new classes.MyBlockchain(3);
+
+// Generate public and private keys
+// Dont try to hack my wallet, it's a random key
+const myKey = ec.keyFromPrivate('879e758232df2368c256d663b0b96ba47373bc21b64b0572636383d6701e3abd');
+const myPublicKey = "NULL"; // myKey.getPublic('hex'); <- commented so I can send money, otherwise I have no money in my wallet and therefore I can't send 
+
+// I send to someone
+const transaction1 = new classes.Transaction(myPublicKey, "public key of someone", 20);
+transaction1.signTransaction(myKey);
+MyBlockchainName.createTransaction(transaction1);
+
+// Blockchain before miner
+console.log(MyBlockchainName);
+
+// Send a miner
+console.log("\n\nStarting the miner. Mining...");
+// sending to this random wallet whose private key no one has, so we are burning the token
+console.log("Blockchain after miner mined a block:")
+MyBlockchainName.minePendingTransaction("minerAddress"); 
+console.log(MyBlockchainName);
+
+// The miner will receive his reward ONLY after a new block is mined
+console.log("\n\nAmount of currecy received by miner: " + MyBlockchainName.getBalanceOfAddress("minerAddress"));
+MyBlockchainName.minePendingTransaction("minerAddress");
+console.log("Amount of currecy received by miner: " + MyBlockchainName.getBalanceOfAddress("minerAddress"));
+
+// Check the balance of the receiver of my coins
+console.log("Check the balance of the receiver of my coins: " + MyBlockchainName.getBalanceOfAddress("public key of someone"));
+
+// Check the blockchain is valid
+console.log("\nIs everything valid: " + MyBlockchainName.isChainValid());
+
+// Try to tamper with the code
+console.log("\nTrying to tamper with the code by modifying the blockchain...");
+MyBlockchainName.chain[1].transactions[0] = 0; // try to scam the person by deleting the coins I sent to the person
+console.log("Is everything valid: " + MyBlockchainName.isChainValid());
 

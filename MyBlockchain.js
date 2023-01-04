@@ -1,5 +1,8 @@
 const SHA256 = require("sha256");
 
+const EC = require('elliptic').ec;
+const ec = new EC('secp256k1'); // the basic bitcoin wallet
+
 /* DEMO 
     // Hash of the block
     let hash = "";
@@ -31,6 +34,44 @@ class Transaction
         this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
+    }
+
+    /* Methods */
+
+    // Calculate hash
+    calculateHash()
+    {
+        return SHA256(this.sender + this.receiver + this.amount).toString();
+    }
+
+    // Check if you own the currency
+    signTransaction(signingKey)
+    {
+        // Check if the public key is from the correct address
+        if(signingKey.getPublic('hex') !== this.sender && this.sender != "NULL") // NULL sender = me, admin
+        {
+            throw new Error("You don't own this wallet!");
+        }
+
+
+        const hashKey = this.calculateHash();
+        const sig = signingKey.sign(hashKey, 'base64');
+        this.signature = sig.toDER('hex');
+    }
+
+    // Check if the transaction is valid
+    isValid()
+    {
+        if(this.sender === "NULL")
+            return true; // we are rewarding them for mining
+        
+        if(!this.signature || this.signature.length <= 0)
+        {
+            throw new Error("No signature!");
+        }
+
+        const publicKey = ec.keyFromPublic(this.sender, 'hex');
+        return publicKey.verify(this.calculateHash(), this.signature);
     }
 }
 
@@ -76,6 +117,18 @@ class Block
             this.currentHash = this.calculateHash();
         }
     }
+
+    // Check if all transactions are valid in the block
+    iAmValid()
+    {
+        for(const blockTransaction of this.transactions)
+        {
+            if(blockTransaction.isValid() == false)
+                return false;
+        }
+
+        return true;
+    }
 }
 
 class MyBlockchain
@@ -107,7 +160,27 @@ class MyBlockchain
     // Create a transaction and add it to the transactions
     createTransaction(transaction)
     {
-        this.pendingTransactions.push(transaction);
+        // Check content
+        if(transaction.sender == "NULL") {
+            this.pendingTransactions.push(transaction);
+        } else {
+            if(!transaction.sender || !transaction.receiver || !transaction.amount || transaction.amount <= 0)
+            {
+                throw new Error("Transaction invalid!");
+            }
+
+            if(transaction.isValid() == false)
+            {
+                throw new Error("Transaction was not signed!");
+            }
+
+            if(this.getBalanceOfAddress(transaction.sender) < transaction.amount) {
+                throw new Error("You don't have enough currency to send!");
+            }
+
+            this.pendingTransactions.push(transaction);
+        }
+
     }
        
     // Mine pending transaction - reward miner
@@ -212,8 +285,15 @@ class MyBlockchain
         { // We ignore genesis block so we start from 1
             const currentBlock = this.chain[i];
             const previousBlock = this.chain[i - 1];
-
+            
+            // Check block hashes
             if(currentBlock.currentHash !== currentBlock.calculateHash() || currentBlock.previousHash !== previousBlock.currentHash)
+            {
+                return false;
+            }
+
+            // Check block transactions are signed with public key correctly
+            if(currentBlock.iAmValid() == false)
             {
                 return false;
             }

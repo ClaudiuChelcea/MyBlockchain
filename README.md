@@ -50,6 +50,6 @@ Updates:
 * Implement UI<br>
 * Sign transactions with public and private key to allow people to spend only their money<br>
 <br>
-* Token:<br>
+*-* Token:<br>
 * Made the contract non-pausable<br>
 * Submitted request to BSCScan to upload a logo to my coin<br>

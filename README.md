@@ -32,14 +32,14 @@ Smart Contract:
 * Contract tested with Remix Ethereum
 
 Token:
-* Listed on BNB blockchain (for having little gas fees)
-RPC URL: https://bsc-dataseed.binance.org/
-ChainID: 56 (0x38 in hexa for BNB)
-Symbol: BNB
-Block Explorer URL: https://bscscan.com
-Contract: 0xa220aF4153b6a8Ff687607A2d3B226b7bfa0b46F
-Name: LionheadRabbitToken - named after the race of my pet, a lion-head rabbit :)
-Symbol: LRT
+* Listed on BNB blockchain (for having little gas fees)<br>
+RPC URL: https://bsc-dataseed.binance.org/<br>
+ChainID: 56 (0x38 in hexa for BNB)<br>
+Symbol: BNB<br>
+Block Explorer URL: https://bscscan.com<br>
+Contract: 0xa220aF4153b6a8Ff687607A2d3B226b7bfa0b46F<br>
+Name: LionheadRabbitToken - named after the race of my pet, a lion-head rabbit :)<br>
+Symbol: LRT<br>
 
 <hr>
 Updates:

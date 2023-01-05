@@ -10,7 +10,7 @@ If you want to run, you need to:
 
 Blockchain:
 * Language used - JavaScript
-* Proof-of-work concept used
+* Proof-of-work consensus used
 * Genesis block uses Date.now() as timestamp for learning purposes
 * The transactions are simulated (I create them myself from the code & UI)
 * Each block contains a single transaction (this is just for the fact that, because I do the transactions myself,
@@ -47,7 +47,6 @@ Updates:
 *-* Blockchain<br>
 * Reward with crypto block miners<br>
 * Allow multiple transactions per block for scalability<br>
-* Implement UI<br>
 * Sign transactions with public and private key to allow people to spend only their money<br>
 <br>
 *-* Token:<br>
